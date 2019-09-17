@@ -5,61 +5,69 @@ import { Link } from "gatsby";
 
 export default () => {
   const [isMenuOpen, toggleMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  const checkIfMobile = () => {
-    let mql = window.matchMedia("(max-width: 750px)");
-    if (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      ) &&
-      mql.matches
-    ) {
-      console.log("setting mobile true");
-      return true
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 480px)");
+    mediaQuery.addListener(handleMediaQueryChange);
+    handleMediaQueryChange(mediaQuery);
+
+    return () => {
+      mediaQuery.removeListener(handleMediaQueryChange);
+    };
+  }, []);
+
+  const handleMediaQueryChange = mediaQuery => {
+    if (mediaQuery.matches) {
+      setIsSmallScreen(true);
+    } else {
+      setIsSmallScreen(false);
     }
-    return false
   };
 
-  useEffect( () => {
-    checkIfMobile() ? setIsMobile(true) : setIsMobile(false)
-  })
-  
+  const toggleMenu = () => {
+    toggleMenuOpen(!isMenuOpen);
+  };
+
   return (
     <>
       <Box
-        display={!isMobile ? "none" : "block"}
-        onClick={() =>
-          isMenuOpen ? toggleMenuOpen(false) : toggleMenuOpen(true)
-        }
+        display={!isSmallScreen ? "none" : "block"}
+        onClick={toggleMenu}
+        w="50%"
+        textAlign="right"
       >
         <HamburgerMenu />
       </Box>
       <Box
         alignItems="center"
         fontWeight="bold"
-        fontSize="sm"
+        fontSize={["lg","sm"]}
         color="gray.500"
-        flexDirection={!isMobile ? "row" : "column"}
+        flexDirection={!isSmallScreen ? "row" : "column"}
         overflow="hidden"
-        right="20px"
-        top="80px"
         bg="#fff"
         rounded={4}
-        w={isMobile && isMenuOpen ? "100%" : "auto"}
-        p={isMobile && isMenuOpen ? 4 : ""}
-        position={isMobile ? "absolute" : "static"}
-        display={isMobile && !isMenuOpen ? "none" : "flex"}
+        w={isSmallScreen && isMenuOpen ? "100%" : "auto"}
+        p={isSmallScreen && isMenuOpen ? 4 : ""}
+        display={isSmallScreen && !isMenuOpen ? "none" : "flex"}
       >
-        <Link to="/" style={{ marginLeft: "10px" }}>
-          About
-        </Link>
-        <Link to="/docs" style={{ marginLeft: "10px" }}>
-          Docs
-        </Link>
-        <Link to="/docs/my-first-doc" style={{ marginLeft: "10px" }}>
-          Single Doc
-        </Link>
+        <Box mb={isSmallScreen ? "10px" : "0"}>
+          <Link to="/" style={{ marginLeft: "10px" }}>
+            About
+          </Link>
+        </Box>
+        <Box mb={isSmallScreen ? "10px" : "0"}>
+          {" "}
+          <Link to="/docs" style={{ marginLeft: "10px" }}>
+            Docs
+          </Link>
+        </Box>
+        <Box mb={isSmallScreen ? "10px" : "0"}>
+          <Link to="/docs/my-first-doc" style={{ marginLeft: "10px" }}>
+            Single Doc
+          </Link>
+        </Box>
       </Box>
     </>
   );
