@@ -4,20 +4,27 @@ import Header from "../components/Header";
 import { Box, Flex, Heading, Text, Button, Icon } from "@chakra-ui/core";
 import MCOptin from "../components/MCOptin"
 import Footer from "../components/Footer";
+import { graphql } from "gatsby"
+import Img from "gatsby-image"
 
-export default () => (
+export default ({data}) => (
   <Layout>
     <Header />
     <Flex
       alignItems="center"
-      h="45vh"
+      minH="45vh"
       borderBottom="1px solid #eee"
       direction="row"
       textAlign="center"
+      py={8}
     >
-      <Flex direction="column" alignItems="center" w="100%" textAlign="center">
-        <Heading m="0 auto" mb={4} color="orange.600" fontWeight="300" fontSize={["2xl","4xl"]}  letterSpacing="0.05em">Build Websites With Gatsby</Heading>
-        <Text color="gray.500" mb={4}>Themes, plugins, and workflow tools to help you build Gatsby sites faster.</Text>
+
+      <Flex direction="column" alignItems="center" w="100%" textAlign="center" px={2}>
+
+        <Box height="auto" w="100%" maxW="350px" m="10px auto"><Img fluid={data.file.childImageSharp.fluid} alt="Gatsby + WordPress logos" /></Box>
+        
+        <Heading m="0 auto" mb={4} color="orange.600" fontWeight="300" fontSize={["2xl","4xl"]}  letterSpacing="0.05em">Headless WordPress With Gatsby</Heading>
+        <Text color="gray.500" mb={4}>Themes, plugins, and workflow tools to help you build decoupled WordPress + Gatsby sites faster.</Text>
         <Button variantColor="orange" mt={2}>Get Started</Button>
       </Flex>
     </Flex>
@@ -42,3 +49,15 @@ export default () => (
     <Footer />
   </Layout>
 );
+
+export const query = graphql`
+  query {
+    file(name: {eq: "wp-plus-gatsby"}) {
+      childImageSharp {
+        fluid(maxWidth: 1024) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
