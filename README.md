@@ -1,0 +1,2 @@
+# staticfuse.com site
+
