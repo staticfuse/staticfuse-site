@@ -41,12 +41,12 @@ export default class IndexPage extends React.Component {
     return (
       <Box className="optin-box" w="100%" bg="gray.50" p={4}>
         <Box maxW="2xl" m="auto" textAlign="center">
-          <Heading as="h3" mb={1} fontSize="xl">
-            Learn Gatsby
+          <Heading as="h3" mb={1} fontSize="xl" fontFamily="heading" fontWeight="400">
+            Learn Gatsby + WordPress
           </Heading>
 
           <Text color="gray.700" fontSize="sm" mb={2}>
-            Learn how to build headless WordPress sites with Gatsby.
+            The latest developments on  how to build headless WordPress sites with Gatsby.
           </Text>
 
           <Box as="form" display={["block","flex"]} onSubmit={this._handleSubmit}>

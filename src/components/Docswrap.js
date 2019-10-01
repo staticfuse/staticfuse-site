@@ -7,11 +7,11 @@ import Layout from "./Layout";
 export default ({ children }) => (
   <Layout>
     <Flex align="start">
-      <Box w={["0", "300px"]}>
+      {/* <Box w={["0", "300px"]}>
         <Sidebar />
-      </Box>
-      <Box m="auto" w="100%" maxW="4xl" p={4}>
-        <Search />
+      </Box> */}
+      <Box m="auto" w="100%" maxW="2xl" p={4}>
+        {/* <Search /> */}
         {children}
       </Box>
     </Flex>

@@ -21,6 +21,23 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Rubik`,
+            subsets: [`latin`],
+            variants: [`300`, `400`, `500`, `700`, `900` ]
+          },
+          {
+            family: `Ubuntu`,
+            subsets: [`latin`],
+            variants: [`300`, `400`, `500`, `700` ]
+          },
+        ],
+      },
+    },
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
   ],

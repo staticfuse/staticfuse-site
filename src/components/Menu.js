@@ -41,9 +41,9 @@ export default () => {
       </Box>
       <Box
         alignItems="center"
-        fontWeight="bold"
-        fontSize={["lg","sm"]}
-        color="gray.500"
+        fontFamily="heading"
+        fontSize={["base","sm"]}
+        color="primary"
         flexDirection={!isSmallScreen ? "row" : "column"}
         overflow="hidden"
         bg="#fff"
@@ -52,20 +52,25 @@ export default () => {
         p={isSmallScreen && isMenuOpen ? 4 : ""}
         display={isSmallScreen && !isMenuOpen ? "none" : "flex"}
       >
-        <Box mb={isSmallScreen ? "10px" : "0"}>
-          <Link to="/" style={{ marginLeft: "10px" }}>
-            About
+      <Box mb={isSmallScreen ? "10px" : "0"}>
+          <Link to="./">
+            Home
           </Link>
         </Box>
-        <Box mb={isSmallScreen ? "10px" : "0"}>
+        {/* <Box mb={isSmallScreen ? "10px" : "0"}>
           {" "}
           <Link to="/docs" style={{ marginLeft: "10px" }}>
             Docs
           </Link>
+        </Box> */}
+        <Box mb={isSmallScreen ? "10px" : "0"}>
+          <Link to="./gatsby-wordpress" style={{ marginLeft: "25px" }}>
+            Why Gatsby + WordPress?
+          </Link>
         </Box>
         <Box mb={isSmallScreen ? "10px" : "0"}>
-          <Link to="/docs/my-first-doc" style={{ marginLeft: "10px" }}>
-            Single Doc
+          <Link to="./about" style={{ marginLeft: "25px" }}>
+            About
           </Link>
         </Box>
       </Box>
